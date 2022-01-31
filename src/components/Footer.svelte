@@ -4,8 +4,8 @@
 		<div class="xs-footer-top-layer">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 footer-widget xs-pr-20">
-					<a href="index.html" class="xs-footer-logo">
-						<img src="assets/images/footer_logo.png" alt="">
+					<a href="/" class="xs-footer-logo">
+						<img src="/assets/images/footer_logo.png" alt="">
 					</a>
 					<p>CharityPress online and raise money for charity and causes you’re passionate about.
 						CharityPress is an innovative, cost-effective online.</p>
@@ -19,19 +19,19 @@
 				<div class="col-lg-4 col-md-6 footer-widget">
 					<h3 class="widget-title">About Us</h3>
 					<ul class="xs-footer-list">
-						<li><a href="index.html">About employee</a></li>
+						<li><a href="/">About employee</a></li>
 						<li><a href="#">How it works</a></li>
 						<li><a href="#">Careers</a></li>
 						<li><a href="#">Press</a></li>
 						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="/contact">Contact</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 footer-widget">
 					<h3 class="widget-title">Contact Us</h3>
 					<ul class="xs-info-list">
 						<li><i class="fa fa-home"></i>Paranggupito, Wonogiri, Central Java</li>
-						<li><i class="fa fa-phone"></i>+62 857 0213 4368 - +62 822 6049 9125</li>
+						<li><i class="fa fa-phone"></i>+62 857 0213 4368   -   +62 822 6049 9125</li>
 						<li><i class="fa fa-envelope-o"></i><a
 								href="mailto:yourname@domain.com">chandraferdhy24@gmail.com</a></li>
 					</ul><!-- .xs-list-with-icon END -->
