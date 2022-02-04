@@ -1,31 +1,42 @@
 <script>
+	import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
     import Header from '../components/Header.svelte';
     import Footer from '../components/Footer.svelte';
-	import { charities } from '../data/charities'
-	
+	import { charities } from '../data/charities';
+
 	export let params;
-	let data;
-	
+	let data, seconds = 0;
+
 	function getCharity(id) {
 		return charities.find(function (charity) {
 			return charity.id === parseInt(id);
-		})
+		});
 	}
 
-	data = getCharity(params.id);
-	</script>
+	onMount(function () {
+		setTimeout(function () {
+			data = getCharity(params.id);
+		}, 2500);
+	});
 
-	<style>
-		.xs-donation-form-images {
-			text-align: center;
-		}
-	</style>
+	const tick = setInterval(function() {
+       seconds += 1;
+       console.log(seconds);
+}, 1000);
+
+onDestroy(function () {
+    console.log("onDestroy");
+    clearInterval(tick);
+});
+	
+</script>
+
 <Header />
 <!-- welcome section -->
 	<!--breadcumb start here-->
-	{#if data}
+	
 	<section class="xs-banner-inner-section parallax-window" style=
-	"background-image:url('/assets/images/btr.jpg')">
+	"background-image:url('/assets/images/cars.jpg')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 	<div class="color-white xs-inner-banner-content">
@@ -45,12 +56,12 @@
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-6">
-	<div class="xs-donation-form-images"><img src="/assets/images/btrbabyla.jpg" class="img-responsive" alt=""></div>
+	<div class="xs-donation-form-images"><img src="/assets/images/btr.jpg" class="img-responsive" alt=""></div>
 	</div>
 	<div class="col-lg-6">
 	<div class="xs-donation-form-wraper">
 	<div class="xs-heading xs-mb-30">
-	<h2 class="xs-title">{data.title}</h2>
+	<h2 class="xs-title">First Charity Project</h2>
 	<p class="small">To learn more about make donate charity
 	with us visit our "<span class="color-green">Contact
 	us</span>" site. By calling <span class=
@@ -74,26 +85,34 @@
 	placeholder="Your donation in Rupiah" />
 	</div><!-- .xs-input-group END -->
 	<div class="xs-input-group">
-	<label for="xs-donate-charity">List of Evaluated Charities
-	<span class="color-light-red">**</span></label>
-	<select name="charity-name" id="xs-donate-charity" class=
-	"form-control">
-	<option value="">
-	Select
-	</option>
-	<option value="amarokSocity">
-	Amarok socity
-	</option>
-	<option value="amarokSocity">
-	Amarok socity
-	</option>
-	<option value="amarokSocity">
-	Amarok socity
-	</option>
-	<option value="amarokSocity">
-	Amarok socity
-	</option>
-	</select>
+		<label for="xs-doante-name">
+			Your Name
+			<span class="color-light-red">**</span>
+		</label>
+		<input
+			type="text"
+			name="name"
+			id="xs-doante-name"
+			class="form-control"
+			placeholder="Your awesome name" />
+	</div>
+	<div class="xs-input-group">
+		<label for="xs-donate-email">
+			Your Email
+			<span class="color-light-red">**</span>
+		</label>
+		<input
+			type="email"
+			name="email"
+			id="xs-donate-email"
+			class="form-control"
+			placeholder="email@awesome.com" />
+	<div class="xs-input-group" id ="xs-input-checkbox">
+		<input type="checkbox" name="agree" id="xs-donate-agree" />
+		<label for="xs-donate-agree"> 
+			I Agree
+			<span class="color-light-red">**</span>
+		</label>
 	</div><!-- .xs-input-group END -->
 	<button type="submit" class="btn btn-warning"><span class=
 	"badge"><i class="fa fa-heart"></i></span> Donate
@@ -105,5 +124,7 @@
 	</div><!-- .container end -->
 	</section><!-- End donation form section -->
 	</main>
-	{/if}
+	
+
+
 <Footer />

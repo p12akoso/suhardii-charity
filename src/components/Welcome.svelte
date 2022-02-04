@@ -1,6 +1,6 @@
 <!-- welcome section -->
 <!--breadcumb start here-->
-<section class="xs-banner-inner-section parallax-window" style="background-image:url('assets/images/avatar/jdm.jpg')">
+<section class="xs-banner-inner-section parallax-window" style="background-image:url('assets/images/avatar/jedeem1.jpg')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 		<div class="color-white xs-inner-banner-content">
