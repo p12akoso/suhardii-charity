@@ -1,11 +1,11 @@
 <script>
-    import Header from '../components/Header.svelte'
+    import Header from '../components/Header.svelte';
     import Footer from '../components/Footer.svelte';
 	import { charities } from '../data/charities'
-
+	
 	export let params;
 	let data;
-
+	
 	function getCharity(id) {
 		return charities.find(function (charity) {
 			return charity.id === parseInt(id);
@@ -13,14 +13,19 @@
 	}
 
 	data = getCharity(params.id);
-</script>
+	</script>
 
+	<style>
+		.xs-donation-form-images {
+			text-align: center;
+		}
+	</style>
 <Header />
 <!-- welcome section -->
 	<!--breadcumb start here-->
-	
+	{#if data}
 	<section class="xs-banner-inner-section parallax-window" style=
-	"background-image:url('/assets/images/bantu.jpg')">
+	"background-image:url('/assets/images/btr.jpg')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 	<div class="color-white xs-inner-banner-content">
@@ -40,12 +45,12 @@
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-6">
-	<div class="xs-donation-form-images"><img src="/assets/images/migrasi.jpg" class="img-responsive" alt=""></div>
+	<div class="xs-donation-form-images"><img src="/assets/images/btrbabyla.jpg" class="img-responsive" alt=""></div>
 	</div>
 	<div class="col-lg-6">
 	<div class="xs-donation-form-wraper">
 	<div class="xs-heading xs-mb-30">
-	<h2 class="xs-title">First Charity Project</h2>
+	<h2 class="xs-title">{data.title}</h2>
 	<p class="small">To learn more about make donate charity
 	with us visit our "<span class="color-green">Contact
 	us</span>" site. By calling <span class=
@@ -100,7 +105,5 @@
 	</div><!-- .container end -->
 	</section><!-- End donation form section -->
 	</main>
-	
-
-
+	{/if}
 <Footer />

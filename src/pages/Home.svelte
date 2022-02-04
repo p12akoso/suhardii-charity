@@ -1,4 +1,5 @@
 <script>
+
 	import CharityList from "../components/CharityList.svelte";
 	import Header from '../components/Header.svelte'
 	import Welcome from '../components/Welcome.svelte'
@@ -7,9 +8,8 @@
   
 	import { charities } from "../data/charities.js";
   
-	let title = "charity";
+	let title = "Charity";
   </script>
-  
   
   <Header />
   <Welcome />
