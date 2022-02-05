@@ -17,7 +17,8 @@
     router("/success", () => (page = Success));
     router("/error", () => (page = Failure));
     router(
-        "/donation/:id", (ctx, next) => {
+        "/donation/:id", 
+        (ctx, next) => {
         params = ctx.params;
         next();
     },
