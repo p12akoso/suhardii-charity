@@ -9,7 +9,7 @@ module.exports = {
             target : 100000,
             date_end: +new Date('10 August 2022'),
             profile_photo: 'assets/images/avatar/pp.jpg', 
-            profile_name: 'Chandra Ferdhiyan',
+            profile_name: 'ul ul ',
             no_pledged: 0
         }
     ]
