@@ -1,7 +1,14 @@
 <div id="preloader">
+
 	<div class="spinner">
 	<div class="double-bounce1"></div>
 	<div class="double-bounce2"></div>
 	</div>
 	</div>
     
+
+    <div class="spinner">
+    <div class="double-bounce1"/>
+    <div class="double-bounce2"/>
+    </div>
+  

@@ -25,6 +25,7 @@
 
   }
 
+
 function handleButton() {
   isModalOpen = true;
 }
@@ -43,7 +44,11 @@ function handleButton() {
    background-color: rgba(0, 0, 0, 0.45);
  }
  .pledged {
+
    margin-right: 1.5em;
+
+   margin-right: 2em;
+
  }
 </style>
 
@@ -141,6 +146,9 @@ function handleButton() {
             <div class="row xs-margin-0">
               <div class="xs-round-avatar">
                 <img src="assets/images/avatar/OIP.jpg" alt="">
+
+                <img src={charity.profile_photo} alt="">
+ 
               </div>
               <div class="xs-avatar-title">
                 <a href="#"><span>By</span>{charity.profile_name}</a>
@@ -160,8 +168,10 @@ function handleButton() {
         </div><!-- .xs-popular-item END -->
       </div>
       {/each}
+
     </div> <!-- .row end -->
   </div> <!-- .container end -->
+
 </section><!-- End popularCauses section -->
 
 

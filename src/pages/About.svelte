@@ -6,8 +6,7 @@
 <Header />
 <!-- welcome section -->
 <!--breadcumb start here-->
-<section 
-class="xs-banner-inner-section parallax-window" style="background-image:url('assets/images/about_bg.png')">
+<section class="xs-banner-inner-section parallax-window" style="background-image:url('assets/images/about_bg.png')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 		<div class="color-white xs-inner-banner-content">
@@ -19,8 +18,8 @@ class="xs-banner-inner-section parallax-window" style="background-image:url('ass
 		</div>
 	</div>
 </section>
-<!--breadcumb end here--><!-- End welcome section -->
-
+<!--breadcumb end here-->
+<!-- End welcome section -->
 
 <main class="xs-main">
 	<!-- video popup section section -->

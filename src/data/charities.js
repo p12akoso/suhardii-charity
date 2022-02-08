@@ -7,7 +7,7 @@ module.exports = {
             thumbnail: 'assets/images/causes/money.jpg',
             pledged: 0,
             target : 100000,
-            date_end: +new Date('10 August 2022'),
+            date_end: +new Date('10 March 2022'),
             profile_photo: 'assets/images/avatar/pp.jpg', 
             profile_name: 'ul ul ',
             no_pledged: 0

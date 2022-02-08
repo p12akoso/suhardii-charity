@@ -15,7 +15,7 @@
     router("/about", () => (page = About));
     router("/contact", () => (page = Contact));
     router("/success", () => (page = Success));
-    router("/error", () => (page = Failure))
+    router("/error", () => (page = Failure));
     router(
         "/donation/:id", 
         (ctx, next) => {
