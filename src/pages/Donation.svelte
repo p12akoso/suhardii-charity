@@ -191,67 +191,6 @@
 	</span> Donate
 	now</button>
 
-	<label for="xs-donate-name">
-		Donation Amount 
-		<span class="color-light-red">**</span>
-	</label> 
-	<input 
-		type="text" 
-		name="amount" 
-		id="xs-donate-amount" 
-		class="form-control" 
-		bind:value={amount}
-		required="true"
-		placeholder="Your donation in Rupiah" />
-</div>
-<!-- .xs-input-group END -->
-<div class="xs-input-group">
-	<label for="xs-doante-name">
-		Your Name
-		<span class="color-light-red">**</span>
-	</label>
-	<input
-		type="text"
-		name="name"
-		id="xs-doante-name"
-		class="form-control"
-		bind:value={name}
-		required="true"
-		placeholder="Your awesome name" />
-</div>
-<div class="xs-input-group">
-	<label for="xs-donate-email">
-		Your Email
-		<span class="color-light-red">**</span>
-	</label>
-	<input
-		type="email"
-		name="email"
-		required="true"
-		bind:value={email}
-		id="xs-donate-email"
-		class="form-control"
-		placeholder="email@awesome.com" />
-</div>
-<div class="xs-input-group" id ="xs-input-checkbox">
-	<input type="checkbox" name="agree" id="xs-donate-agree" 
-	bind:checked={agree}/>
-	<label for="xs-donate-agree"> 
-		I Agree
-		<span class="color-light-red">**</span>
-	</label>
-</div>
-<!-- .xs-input-group END -->
-<button 
-	type="submit"
-	disabled={!agree}
-	class="btn btn-warning">
-	<span class="badge">
-	<i class="fa fa-heart" />
-	</span> 
-	Donate now
-	</button>
-
 	</form><!-- .xs-donation-form #xs-donation-form END -->
 	</div>
 	</div>
