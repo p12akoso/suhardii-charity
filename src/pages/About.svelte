@@ -80,7 +80,7 @@ class="xs-banner-inner-section parallax-window" style="background-image:url('ass
 </section>	<!-- End video popup section section -->
 
 	<!-- funfacts section -->
-	<div class="xs-funfact-section xs-content-section-padding waypoint-tigger parallax-window" style="background-image: url('assets/images/backgrounds/parallax_1.jpg')">
+	<div class="xs-funfact-section xs-content-section-padding waypoint-tigger parallax-window" style="background-image: url('assets/images/slide1.png')">
 	<div class="container">
 		<div class="row col-lg-10 xs-heading mx-auto">
 			<h2 class="xs-title color-white small">Our agency has been present for over 30 years. We make the best for all our children.</h2>

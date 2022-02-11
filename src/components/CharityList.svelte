@@ -1,6 +1,6 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
-  import Modal from './Modal.svelte'
+  import { onMount, onDestroy, beforeUpdate, afterUpdate} from "svelte";
+  import Modal from './Modal.svelte';
 
   export let charities;
   let isModalOpen = false;
@@ -55,6 +55,7 @@ function handleButton() {
       </div><!-- .xs-heading-title END -->
     </div><!-- .row end -->
     <div class="row">
+      {#if charities}
       {#each charities as charity}
       <div class="col-lg-4 col-md-6">
       {#if isModalOpen ===true}
@@ -155,6 +156,7 @@ function handleButton() {
         </div><!-- .xs-popular-item END -->
       </div>
       {/each}
+      {/if}
     </div><!-- .row end -->
   </div><!-- .container end -->
 </section><!-- End popularCauses section -->
@@ -162,6 +164,7 @@ function handleButton() {
 
 <!-- 
 <div>
+  <h2>Daftar Charity</h2>
   {#if charities !== undefined}
    <ul>
     {#each charities as charity}
