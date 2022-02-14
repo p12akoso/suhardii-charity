@@ -1,4 +1,5 @@
 <script>
+  import { fade, slide, fly } from 'svelte/transition';
   import { charities } from '../stores/data.js';
   import Modal from './Modal.svelte';
   import Loader from './Loader.svelte';
@@ -107,7 +108,7 @@ function handleButton() {
         <div class="xs-popular-item xs-box-shadow">
           <div class="xs-item-header">
 
-            <img src="assets/images/causes/money.jpg" alt="">
+            <img src={charity.thumbnail} alt="">
             <div class="xs-skill-bar">
               <div class="xs-skill-track">
                 <p><span class="number-percentage-count number-percentage" data-value="90"
