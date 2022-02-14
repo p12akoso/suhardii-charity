@@ -1,8 +1,8 @@
 <script>
-  import { onMount, onDestroy, beforeUpdate, afterUpdate} from "svelte";
+  import { charities } from '../stores/data.js';
   import Modal from './Modal.svelte';
+  import Loader from './Loader.svelte';
 
-  export let charities;
   let isModalOpen = false;
 
   function calculateFunded(pledged, target) {
@@ -55,8 +55,7 @@ function handleButton() {
       </div><!-- .xs-heading-title END -->
     </div><!-- .row end -->
     <div class="row">
-      {#if charities}
-      {#each charities as charity}
+      {#each $charities as charity}
       <div class="col-lg-4 col-md-6">
       {#if isModalOpen ===true}
         <Modal>
@@ -155,8 +154,9 @@ function handleButton() {
           </div><!-- .xs-item-content END -->
         </div><!-- .xs-popular-item END -->
       </div>
+      {:else}
+      <Loader />
       {/each}
-      {/if}
     </div><!-- .row end -->
   </div><!-- .container end -->
 </section><!-- End popularCauses section -->
