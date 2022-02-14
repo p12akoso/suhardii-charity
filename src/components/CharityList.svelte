@@ -5,31 +5,33 @@
   import Loader from './Loader.svelte';
 
   let isModalOpen = false;
+ 
+ function calculateFunded(pledged, target) {
+   return Math.round ((1 / (target / pledged)) * 100);
+ }
 
-  function calculateFunded(pledged, target) {
-		return Math.round ((1 / (target / pledged)) * 100);
-	}
+ function formatCurency(nominal) {
+   return nominal.toLocaleString("id-ID",{
+     style: "currency",
+     currency: "IDR",
+   } );
+  }
 
-	function formatCurency(nominal) {
-		return nominal.toLocaleString("id-ID",{
-			style: "currency",
-			currency: "IDR",
-		} );
-	}
+  function calculateDaysRemaining(date_end) {
+    const delta = date_end - new Date();
+  
 
-	function calculateDaysRemaining(date_end) {
-		const delta = date_end - new Date();
+  const oneDay = 24 * 60 * 60 * 1000;
+  return Math.round(Math.abs(delta / oneDay));
 
-		const oneDay = 24 * 60 * 60 * 1000;
-		return Math.round(Math.abs(delta / oneDay));
+  }
 
-	}
 
 function handleButton() {
- isModalOpen = true;
+  isModalOpen = true;
 }
 
-  function handleCloseModal() {
+ function handleCloseModal() {
     isModalOpen = false;
   }
 </script>
@@ -42,6 +44,16 @@ function handleButton() {
    display: block;
    background-color: rgba(0, 0, 0, 0.45);
  }
+<<<<<<< HEAD
+=======
+ .pledged {
+
+   margin-right: 1.5em;
+
+   margin-right: 2em;
+
+ }
+>>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
 </style>
 
 <!-- popularCauses section -->
@@ -54,7 +66,8 @@ function handleButton() {
         <p>FundPress has built a platform focused on aiding entrepreneurs, startups, and <br> companies
           raise capital from anyone.</p>
       </div><!-- .xs-heading-title END -->
-    </div><!-- .row end -->
+    </div>
+    <!-- .row end -->
     <div class="row">
       {#each $charities as charity}
       <div class="col-lg-4 col-md-6">
@@ -136,7 +149,10 @@ function handleButton() {
 
             <div class="row xs-margin-0">
               <div class="xs-round-avatar">
+                <img src="assets/images/avatar/OIP.jpg" alt="">
+
                 <img src={charity.profile_photo} alt="">
+ 
               </div>
               <div class="xs-avatar-title">
                 <a href="#"><span>By</span>{charity.profile_name}</a>
@@ -158,8 +174,10 @@ function handleButton() {
       {:else}
       <Loader />
       {/each}
-    </div><!-- .row end -->
-  </div><!-- .container end -->
+
+    </div> <!-- .row end -->
+  </div> <!-- .container end -->
+
 </section><!-- End popularCauses section -->
 
 
