@@ -1,76 +1,43 @@
 <script>
-	import { charity, getCharity } from '../stores/data.js';
-	import { params } from '../stores/pages.js';
+	import { charity, getCharity } from "../stores/data.js";
+	import { params } from "../stores/pages.js";
 	import router from 'page';
     import Header from '../components/Header.svelte';
     import Footer from '../components/Footer.svelte';
 	import Loader from '../components/Loader.svelte';
-
-	let amount,
-	name,
-	email,
-	agree = false;
-
-	getCharity($params.id)
-
-    export let params;
-	let charity, 
-	amount, 
-	name, 
-	email, 
-	agree = false;
-	let data = getCharity(params.id);
-
-    async function getCharity(id) {
-		const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${id}`
-		);
-		return res.json();
+	let
+	amount = 0, name, email, agree = false,
+	contribute = 0;
+	$:if($charity) {
+		contribute = Math.floor((parseInt(amount) / $charity.target) *100);
 	}
-
-
+	
+	getCharity($params.id);
 	function handleButtonClick() {
-		console.log("Button Click");
+		console.log("Button click");
 	}
-
 	async function handleForm(event) {
-	   charity.pledged = charity.pledged + parseInt(amount);
-	   try {
-		const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${params.id}`, 
-		{
-		   method: 'PUT',
-		   headers: {
-			   'content-type': 'application/json'
-		   },
-		   body: JSON.stringify(charity)
-	    }
-	   );
-	   console.log(res);
-	   // redirection
-	   router.redirect("/success");
-	   } catch(err) {
-		   console.log(err);
-	   }
+		agree = false;
+		const newData = await getCharity($params.id);
+		newData.pledged = newData.pledged + parseInt(amount);
+		try {
+			const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${$params.id}`,{
+		  method: 'PUT',
+		  headers: {
+			  'content-type': 'application/json'
+		  },
+		  body: JSON.stringify(newData),
+	});
+	console.log(res);
+	//redirection
+	router.redirect('/success');
+	} catch(err) {
+		console.log(err);
 	}
-
+}
 </script>
 
 <style>
-  #xs-input-checkbox {
-	  display: flex;
-	  align-items: center;
-  }
-  #xs-donate-agree {
-	  width: 35px;
-  }
-  label[for="xs-donate-agree"] {
-	  margin: 0;
-	  margin-left: 10px;
-  }
-  .xs-donation-form-images {
-	  text-align: center;
-  }
-
-
  #xs-input-checkbox {
         display: flex;
         align-items: center;
@@ -85,34 +52,19 @@
 </style>
 
 <Header />
+
 <!-- welcome section -->
 	<!--breadcumb start here-->
-
 	{#if !$charity}
 	<Loader />
 	{:else}
-	<section class="xs-banner-inner-section parallax-window" style=
-	"background-image:url('/assets/images/aurora2.jpg')">
-=======
-	{#await data}
-
-      <Loader />
-{:then charity}
-	<section class="xs-banner-inner-section parallax-window" style=
-	"background-image:url('/assets/images/bantu.jpg')">
-
-	
-
-
+	<section class="xs-banner-inner-section parallax-window" 
+	style="background-image:url('/assets/images/bantu.jpg')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 	<div class="color-white xs-inner-banner-content">
 	<h2>Donate Now</h2>
-
-	<p>First Charity Projeck</p>
-
-	<p>{charity.title}</p>
-
+	<p>{$charity.title}</p>
 	<ul class="xs-breadcumb">
 	<li class="badge badge-pill badge-primary">
 	<a href="/" class="color-white">Home /</a> Donate
@@ -136,100 +88,82 @@
 	<p class="small">To learn more about make donate charity
 	with us visit our "<span class="color-green">Contact
 	us</span>" site. By calling <span class=
-	"color-green">+62 857 0213 4368</span>.</p><span class=
+	"color-green">+62 857 0213 4368</span>
+	.
+	</p>
+	<h5>Your donation will be contributing 
+	<strong>{contribute}%</strong>of total current donation.</h5>
+	<span class=
 	"xs-separetor v2"></span>
 	</div><!-- .xs-heading end -->
-
-		<form 
-	on:submit preventDefault={handleForm}
+	<form 
+	on:submit|preventDefault={handleForm}
 	action="#"
 	method="post"
-=======
-
-	<form  
-	on:submit preventDefault={handleForm}
-	action="#" 
-	method="post" 
-
-
 	id="xs-donation-form" 
-	class= "xs-donation-form" 
+	class="xs-donation-form" 
 	name="xs-donation-form">
 	<div class="xs-input-group">
-
-		<label for="xs-donate-name">
-			Donation Amount 
-			<span class="color-light-red">**</span>
-		</label> 
-		<input 
-			type="text" 
-			name="amount" 
-			id="xs-donate-amount" 
-			class="form-control" 
-			bind:value={amount}
-			required="true"
-			placeholder="Your donation in Rupiah" />
-	</div>
-	<!-- .xs-input-group END -->
-	<div class="xs-input-group">
-		<label for="xs-doante-name">
-			Your Name
-			<span class="color-light-red">**</span>
-		</label>
-		<input
-			type="text"
-			name="name"
-			id="xs-doante-name"
-			class="form-control"
-			bind:value={name}
-			required="true"
-			placeholder="Your awesome name" />
-	</div>
-	<div class="xs-input-group">
-		<label for="xs-donate-email">
-			Your Email
-			<span class="color-light-red">**</span>
-		</label>
-		<input
-			type="email"
-			name="email"
-<<<<<<< HEAD
-			required='true'
-=======
-			required="true"
-			bind:value={email}
->>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
-			id="xs-donate-email"
-			class="form-control"
-			placeholder="email@awesome.com" />
-	<div class="xs-input-group" id ="xs-input-checkbox">
-<<<<<<< HEAD
-		<input type="checkbox" name="agree" id="xs-donate-agree" bind:checked={agree} />
-=======
-		<input 
-		type="checkbox" 
-		name="agree" 
-		id="xs-donate-agree" 
-		bind:checked={agree} />
->>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
-		<label for="xs-donate-agree"> 
-			I Agree
-			<span class="color-light-red">**</span>
-		</label>
-	</div><!-- .xs-input-group END -->
-<<<<<<< HEAD
-	<button
-	type="Submit" disabled={!agree} class="btn btn-warning"><span class=
-	"badge"><i class="fa fa-heart"></i></span> Donate
-	now</button>
-=======
-	<button type="submit" disabled={!agree} class="btn btn-warning">
+	<label for="xs-donate-name">
+		Donation Amount 
+		<span class="color-light-red">**</span>
+	</label> 
+	<input 
+		type="text" 
+		name="amount" 
+		id="xs-donate-amount" 
+		class="form-control" 
+		bind:value={amount}
+		required="true"
+		placeholder="Your donation in Rupiah" />
+</div>
+<!-- .xs-input-group END -->
+<div class="xs-input-group">
+	<label for="xs-doante-name">
+		Your Name
+		<span class="color-light-red">**</span>
+	</label>
+	<input
+		type="text"
+		name="name"
+		id="xs-doante-name"
+		class="form-control"
+		bind:value={name}
+		required="true"
+		placeholder="Your awesome name" />
+</div>
+<div class="xs-input-group">
+	<label for="xs-donate-email">
+		Your Email
+		<span class="color-light-red">**</span>
+	</label>
+	<input
+		type="email"
+		name="email"
+		required="true"
+		bind:value={email}
+		id="xs-donate-email"
+		class="form-control"
+		placeholder="email@awesome.com" />
+</div>
+<div class="xs-input-group" id ="xs-input-checkbox">
+	<input type="checkbox" name="agree" id="xs-donate-agree" 
+	bind:checked={agree}/>
+	<label for="xs-donate-agree"> 
+		I Agree
+		<span class="color-light-red">**</span>
+	</label>
+</div>
+<!-- .xs-input-group END -->
+<button 
+	type="submit"
+	disabled={!agree}
+	class="btn btn-warning">
 	<span class="badge">
-		<i class="fa fa-heart"></i>
-	</span> Donate
-	now</button>
-
->>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
+	<i class="fa fa-heart" />
+	</span> 
+	Donate now
+	</button>
 	</form><!-- .xs-donation-form #xs-donation-form END -->
 	</div>
 	</div>
@@ -237,13 +171,8 @@
 	</div><!-- .container end -->
 	</section><!-- End donation form section -->
 	</main>
-<<<<<<< HEAD
 	{/if}
-=======
-	{/await}
-	
 
 
->>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
 
 <Footer />

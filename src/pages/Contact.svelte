@@ -1,9 +1,13 @@
 <script>
     import Header from '../components/Header.svelte'
     import Footer from '../components/Footer.svelte'
-	
+	import  Map from "../components/Map.svelte";
+	export let ready;
 </script>
-
+ 
+ <svelte:head>
+	<script defer ascync src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCy7becgYuLwns3uumNm6WdBYkBpLfy44k&callback=initMap"></script>
+ </svelte:head>
 <Header />
 <!-- welcome section -->
 <!--breadcumb start here-->
@@ -54,10 +58,10 @@
 						</form><!-- .xs-contact-form #xs-contact-form END -->
 					</div><!-- .xs-contact-form-wraper END -->
 				</div>
-				<div class="col-lg-6">
-					<div class="xs-maps-wraper map-wraper-v2">
-						<div id="xs-map" class="xs-box-shadow-2"></div>
-					</div>
+				<div class="col-lg-6">	
+					{#if ready}
+					<Map />
+					{/if}
 				</div>
 			
 			</div><!-- .row end -->

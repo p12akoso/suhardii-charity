@@ -1,37 +1,27 @@
 <script>
   import { fade, slide, fly } from 'svelte/transition';
-  import { charities } from '../stores/data.js';
-  import Modal from './Modal.svelte';
-  import Loader from './Loader.svelte';
-
+  import { charities } from "../stores/data.js";
+  import Modal from "./Modal.svelte";
+  import Loader from "./Loader.svelte";
   let isModalOpen = false;
- 
- function calculateFunded(pledged, target) {
-   return Math.round ((1 / (target / pledged)) * 100);
- }
-
- function formatCurency(nominal) {
-   return nominal.toLocaleString("id-ID",{
-     style: "currency",
-     currency: "IDR",
-   } );
-  }
-
-  function calculateDaysRemaining(date_end) {
-    const delta = date_end - new Date();
-  
-
-  const oneDay = 24 * 60 * 60 * 1000;
-  return Math.round(Math.abs(delta / oneDay));
-
-  }
-
-
+  function calculateFunded(pledged, target) {
+		return Math.round ((1 / (target / pledged)) * 100);
+	}
+	function formatCurency(nominal) {
+		return nominal.toLocaleString("id-ID",{
+			style: "currency",
+			currency: "IDR",
+		} );
+	}
+	function calculateDaysRemaining(date_end) {
+		const delta = date_end - new Date();
+		const oneDay = 24 * 60 * 60 * 1000;
+		return Math.round(Math.abs(delta / oneDay));
+	}
 function handleButton() {
-  isModalOpen = true;
+ isModalOpen = true;
 }
-
- function handleCloseModal() {
+  function handleCloseModal() {
     isModalOpen = false;
   }
 </script>
@@ -44,16 +34,9 @@ function handleButton() {
    display: block;
    background-color: rgba(0, 0, 0, 0.45);
  }
-<<<<<<< HEAD
-=======
  .pledged {
-
-   margin-right: 1.5em;
-
    margin-right: 2em;
-
  }
->>>>>>> 760f787bf414e6c16069cb515ea33fad0a0cdc5a
 </style>
 
 <!-- popularCauses section -->
@@ -66,11 +49,12 @@ function handleButton() {
         <p>FundPress has built a platform focused on aiding entrepreneurs, startups, and <br> companies
           raise capital from anyone.</p>
       </div><!-- .xs-heading-title END -->
-    </div>
-    <!-- .row end -->
+    </div><!-- .row end -->
     <div class="row">
       {#each $charities as charity}
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-4 col-md-6" 
+      in:slide={{ delay: 1000 }}
+      out:fade={{delay: 1000}} >
       {#if isModalOpen ===true}
         <Modal>
            <!-- modal goes here a -->
@@ -123,8 +107,9 @@ function handleButton() {
 
             <img src={charity.thumbnail} alt="">
             <div class="xs-skill-bar">
-              <div class="xs-skill-track">
-                <p><span class="number-percentage-count number-percentage" data-value="90"
+              <div class="xs-skill-track" style="widht:{calculateFunded(charity.pledged, charity.target)}%"> 
+                <p in:fly="{{ delay: 3500, x: -100}}" style="left: 100%">
+                  <span class="number-percentage-count number-percentage" data-value="90"
                     data-animation-duration="3500">{calculateFunded(charity.pledged, charity.target)}</span>%</p>
               </div>
             </div>
@@ -149,10 +134,7 @@ function handleButton() {
 
             <div class="row xs-margin-0">
               <div class="xs-round-avatar">
-                <img src="assets/images/avatar/OIP.jpg" alt="">
-
                 <img src={charity.profile_photo} alt="">
- 
               </div>
               <div class="xs-avatar-title">
                 <a href="#"><span>By</span>{charity.profile_name}</a>
@@ -174,16 +156,13 @@ function handleButton() {
       {:else}
       <Loader />
       {/each}
-
-    </div> <!-- .row end -->
-  </div> <!-- .container end -->
-
+    </div><!-- .row end -->
+  </div><!-- .container end -->
 </section><!-- End popularCauses section -->
 
 
 <!-- 
 <div>
-  <h2>Daftar Charity</h2>
   {#if charities !== undefined}
    <ul>
     {#each charities as charity}
